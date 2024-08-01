@@ -4,7 +4,7 @@ import { CreateInvoice } from '@/app/ui/invoices/buttons'
 import Pagination from "@/app/ui/invoices/pagination"
 import Table from '@/app/ui/invoices/table'
 import Search from "@/app/ui/search"
-import { InvoicesTableSkeleton } from "@/app/ui/skeletons"
+import { InvoicesTableSkeleton, SearchSkeleton } from "@/app/ui/skeletons"
 import { Metadata } from 'next'
 import { Suspense } from "react"
 
@@ -34,7 +34,9 @@ export default async function Page({
             </div>
 
             <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
-                <Search placeholder="Search invoices..." />
+                <Suspense fallback={<SearchSkeleton />}>
+                    <Search placeholder="Search invoices..." />
+                </Suspense>
                 <CreateInvoice />
             </div>
 
